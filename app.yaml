@@ -1,0 +1,23 @@
+runtime: php83
+
+handlers:
+  # Maneja los archivos estáticos
+  - url: /(.+\.(css|js|png|jpg|jpeg|gif|ico))
+    static_files: \1
+    upload: .+\.(css|js|png|jpg|jpeg|gif|ico)
+
+  # Maneja el archivo .htaccess si lo necesitas
+  - url: /(.+\.(htaccess))
+    static_files: \1
+    upload: .+\.(htaccess)
+
+  # Maneja los archivos PHP, incluyendo index.php
+  - url: /(.*\.php)
+    script: auto
+
+  # Maneja todas las demás solicitudes con index.php
+  - url: /.*
+    script: auto
+
+  - url: /([a-zA-Z0-9]{3})
+    script: auto
