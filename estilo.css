@@ -226,17 +226,18 @@ h3 span {
   display: flex;
   flex-wrap: wrap;
   height: auto;
-  max-width: 900px;
+  max-width: 1000px;
   margin-top: 20px;
   justify-content: center;
 }
 
 .drop-area {
   width: 100%;
-  max-width: 435px;
+  max-width: 2500px; /* Aumenta el ancho máximo del contenedor */
+  height: 600px; /* Añade una altura fija para agrandar el área */
   text-align: center;
   flex: 1;
-  margin: 10px; /* Espacio entre los contenedores */
+  margin: 20px; /* Incrementa el espacio entre los contenedores */
   border: 2px dashed #0730c5;
   box-sizing: border-box; /* El borde se incluye en el ancho y alto del contenedor */
   border-radius: 15px;
@@ -248,6 +249,7 @@ h3 span {
   transition: all 0.3s ease;
   background-color: #f9fbff;
 }
+
 
 .drop-area:hover {
   scale: 0.995;
@@ -488,14 +490,35 @@ button.btn_delete svg {
 }
 
 .boton-descargar-todo{
-  font-size:15px;
-  font-family:"Inter", sans-serif;
-  font-weight:bold;
-  color:black;
-  background:white;
-  border:0px;
-  width:300px;
-  height:40px;
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  height: 40px;
+  width: 300px;
   border-radius: 10px;
-  border: 3px solid #0730c5;;
+  border-color: blue;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-width: 3px;
+}
+
+.boton-descargar-todo:hover {
+  background-color: #8fa4e7;
+}
+
+.boton-eliminar-todo{
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  height: 40px;
+  width: 300px;
+  border-radius: 10px;
+  border-color: rgb(212, 15, 15);
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-width: 3px;
+}
+
+.boton-eliminar-todo:hover {
+  background-color: #f38997;
 }

@@ -37,6 +37,16 @@ try {
                 throw new Exception("El archivo '$archivoAEliminar' no existe.");
             }
         }
+
+        // Eliminar todos los archivos
+        if (isset($_POST['eliminarTodo'])) {
+            $files = scandir($carpetaRuta);
+            $files = array_diff($files, array('.', '..'));
+            foreach ($files as $file) {
+                unlink($carpetaRuta . '/' . $file);
+            }
+            $mensaje = "Todos los archivos han sido eliminados.";
+        }
     }
 
     // Crear archivo ZIP para descargar todos los archivos
@@ -121,7 +131,7 @@ try {
             <span><?php echo $_SERVER['HTTP_HOST'] . '/' . $carpetaNombre; ?></span>
         </h3>
         <div class="container">
-            <div class="drop-area" id="drop-area">
+            <div class="drop-area" id="drop-area" style="height: 404px;>
                 <form id="form" method="POST" enctype="multipart/form-data">
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
                         style="fill:#0730c5;transform: ;msFilter:;">
@@ -130,7 +140,7 @@ try {
                             d="M7 19h2v-2H7c-1.654 0-3-1.346-3-3 0-1.404 1.199-2.756 2.673-3.015l.581-.102.192-.558C8.149 8.274 9.895 7 12 7c2.757 0 5 2.243 5 5v1h1c1.103 0 2 .897 2 2s-.897 2-2 2h-3v2h3c2.206 0 4-1.794 4-4a4.01 4.01 0 0 0-3.056-3.888C18.507 7.67 15.56 5 12 5 9.244 5 6.85 6.611 5.757 9.15 3.609 9.792 2 11.82 2 14c0 2.757 2.243 5 5 5z">
                         </path>
                     </svg> <br>
-                    <input type="file" class="file-input" name="archivo" id="archivo" multiple>
+                    <input type="file" class="file-input" name="archivo" id="archivo" multiple style="width: 390px; height: 400px; margin-left: -20px; margin-right: -10px" >
                     <label> Arrastra tus archivos aquí<br>o</label>
                     <p><b>Abre el explorador</b></p>
                 </form>
@@ -172,12 +182,20 @@ try {
                             }
 
                             // Botón para descargar todos los archivos en ZIP
-                            echo "
-                            <form action='' method='POST'>
-                                <input type='hidden' name='descargarZip' value='1'>
-                                <button type='submit' class='boton-descargar-todo'>Descargar todos los archivos en ZIP</button>
-                            </form>
-                            ";
+                        echo "
+                        <form action='' method='POST'>
+                            <input type='hidden' name='descargarZip' value='1'>
+                            <button type='submit' class='boton-descargar-todo'>Descargar todos los archivos en ZIP</button>
+                        </form>
+                        ";
+
+                        // Botón para eliminar todos los archivos
+                        echo "
+                        <form action='' method='POST'>
+                            <input type='hidden' name='eliminarTodo' value='1'>
+                            <button type='submit' class='boton-eliminar-todo'>Eliminar todos los archivos</button>
+                        </form>
+                        ";
                         } else {
                             echo "No se han subido archivos.";
                         }
@@ -194,7 +212,7 @@ try {
 
     <footer class="footer">
         <div class="footer-container">
-            <p>&copy; 2024 Chelso. All rights reserved.</p>
+            <p>&copy; 2024 Unknownuser43. All rights reserved.</p>
             <ul class="footer-menu">
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Terms of Service</a></li>
